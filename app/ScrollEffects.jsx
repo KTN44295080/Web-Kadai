@@ -41,6 +41,30 @@ export default function ScrollEffects() {
       ),
     );
     let ticking = false;
+    const revealStates = new WeakMap();
+
+    const setRevealState = (item, nextState) => {
+      const currentState = revealStates.get(item);
+      if (currentState === nextState) {
+        return;
+      }
+
+      revealStates.set(item, nextState);
+
+      if (nextState === "visible") {
+        item.classList.add("isVisible");
+        item.classList.remove("isLeaving");
+        return;
+      }
+
+      if (nextState === "leaving") {
+        item.classList.remove("isVisible");
+        item.classList.add("isLeaving");
+        return;
+      }
+
+      item.classList.remove("isVisible", "isLeaving");
+    };
 
     const update = () => {
       const scrollTop = window.scrollY;
@@ -56,14 +80,14 @@ export default function ScrollEffects() {
 
       revealItems.forEach((item) => {
         const rect = item.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+        const entersView = rect.top < window.innerHeight * 0.88 && rect.bottom > window.innerHeight * 0.12;
+        const fullyLeftView = rect.bottom < -window.innerHeight * 0.14 || rect.top > window.innerHeight * 1.14;
+        const state = revealStates.get(item) || "hidden";
 
-        if (inView) {
-          item.classList.add("isVisible");
-          item.classList.remove("isLeaving");
-        } else if (item.classList.contains("isVisible")) {
-          item.classList.remove("isVisible");
-          item.classList.add("isLeaving");
+        if (entersView) {
+          setRevealState(item, "visible");
+        } else if (state === "visible" && fullyLeftView) {
+          setRevealState(item, "leaving");
         }
       });
 
@@ -77,25 +101,10 @@ export default function ScrollEffects() {
       }
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("isVisible");
-            entry.target.classList.remove("isLeaving");
-          } else if (entry.target.classList.contains("isVisible")) {
-            entry.target.classList.remove("isVisible");
-            entry.target.classList.add("isLeaving");
-          }
-        });
-      },
-      { rootMargin: "-6% 0px -10% 0px", threshold: 0.12 },
-    );
-
     revealItems.forEach((item, index) => {
       item.classList.add("revealItem");
       item.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 45}ms`);
-      observer.observe(item);
+      revealStates.set(item, "hidden");
     });
 
     update();
@@ -105,7 +114,6 @@ export default function ScrollEffects() {
     return () => {
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
-      observer.disconnect();
       document.body.classList.remove("motionReady");
     };
   }, []);
