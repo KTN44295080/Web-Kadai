@@ -346,8 +346,8 @@ export default function Home() {
                 <span className="eyebrow">For future creators</span>
                 <h2 id="target-title">まずは、広く試す</h2>
                 <p>
-                  デザイン、映像、SNS、Webサービス。気になるものがいくつもあるなら、
-                  Webの学びはその好奇心をまとめて試せる場所になる。
+                  気になるものが複数あるなら、
+                  Webでまとめて試せます。
                 </p>
               </div>
               <ul className="targetList">
@@ -367,8 +367,8 @@ export default function Home() {
             <div className="sectionHead">
               <h2 id="learn-title">Webの5つの力</h2>
               <p className="sectionLead">
-                デザイン、UI/UX、フロントエンド、バックエンド、マーケティング。
-                画面を作るだけでなく、サービスを届けるところまで扱います。
+                デザインから実装、届け方まで。
+                Web制作の流れをひと通り学びます。
               </p>
             </div>
             <div className="learningGrid fiveColumns">
@@ -390,8 +390,8 @@ export default function Home() {
             <div className="sectionHead">
               <h2 id="campus-title">授業の空気</h2>
               <p className="sectionLead">
-                講義で考え、手を動かして作り、最後は発表する。
-                教室の距離感や制作中の雰囲気まで見えるようにします。
+                考える、作る、発表する。
+                授業の流れを写真で確認できます。
               </p>
             </div>
             <div className="sceneGrid">
@@ -413,8 +413,8 @@ export default function Home() {
             <div className="sectionHead">
               <h2 id="roadmap-title">4年間の道筋</h2>
               <p className="sectionLead">
-                基礎から表現、サービス化、ポートフォリオへ。
-                学年ごとに学ぶ内容と、作れるようになるものを並べています。
+                基礎から卒業制作まで。
+                学年ごとの学びを追えます。
               </p>
             </div>
             <div className="roadmap">
@@ -441,8 +441,8 @@ export default function Home() {
             <div className="sectionHead">
               <h2 id="courses-title">授業から作品へ</h2>
               <p className="sectionLead">
-                CSS、JavaScript、UI/UXなどの授業は、知識で終わらせない。
-                課題制作を通して、ポートフォリオに載せられる形へ近づけます。
+                授業で学んだことを、
+                課題制作として形にします。
               </p>
             </div>
             <div className="courses">
@@ -462,8 +462,8 @@ export default function Home() {
             <div className="sectionHead">
               <h2 id="works-title">学生作品を見る</h2>
               <p className="sectionLead">
-                Webサービス、文化発信、研究型のサイトなど、学生のアウトプットを実際のページで確認できます。
-                気になる作品を選ぶと、左のプレビューが切り替わります。
+                気になる作品を選ぶと、
+                左のWebプレビューが切り替わります。
               </p>
             </div>
             <WorksShowcase works={works} />
@@ -481,8 +481,8 @@ export default function Home() {
                 <span className="eyebrow">Teachers</span>
                 <h2 id="teacher-title">現役プロに学ぶ</h2>
                 <p>
-                  技術、デザイン、メディア、開発を横断して学べるのがWebカテゴリーの特徴。
-                  現場で活動する教員から、制作の考え方と判断の仕方を学びます。
+                  技術、デザイン、メディア、開発を、
+                  現場目線で学びます。
                 </p>
               </div>
               <div className="teacherList">
@@ -507,8 +507,8 @@ export default function Home() {
             <div className="sectionHead">
               <h2 id="voices-title">在学生のリアル</h2>
               <p className="sectionLead">
-                入学前の不安、授業でつまずいたこと、作れるようになったもの。
-                先輩の言葉から、入学後の自分を少し具体的に想像できます。
+                先輩の声から、
+                入学後の学びが見えてきます。
               </p>
             </div>
             <div className="voiceGrid">
@@ -533,8 +533,8 @@ export default function Home() {
                 <span className="eyebrow light">Career</span>
                 <h2 id="career-title">学びの先へ</h2>
                 <p className="sectionLead">
-                  Webの学びは、制作会社だけでなく、IT企業、広告、事業会社のデザイン職、
-                  サービス企画職などにもつながります。
+                  制作会社、IT企業、広告、事業会社へ。
+                  Webの学びは進路の幅につながります。
                 </p>
                 <div className="employmentGrid">
                   {employmentHighlights.map((item) => (
@@ -579,8 +579,8 @@ export default function Home() {
               <div>
                 <h2 id="entry-title">次は、見に行く</h2>
                 <p>
-                  写真や作品だけではわからない空気は、実際に見た方が早い。
-                  資料請求、オープンキャンパス、入試情報から次の一歩を選べます。
+                  資料請求、オープンキャンパス、
+                  入試情報へ。
                 </p>
               </div>
               <div className="ctaActions">

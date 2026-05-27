@@ -54,6 +54,19 @@ export default function ScrollEffects() {
         item.style.setProperty("--parallax-y", `${offset.toFixed(2)}px`);
       });
 
+      revealItems.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+
+        if (inView) {
+          item.classList.add("isVisible");
+          item.classList.remove("isLeaving");
+        } else if (item.classList.contains("isVisible")) {
+          item.classList.remove("isVisible");
+          item.classList.add("isLeaving");
+        }
+      });
+
       ticking = false;
     };
 
