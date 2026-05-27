@@ -348,10 +348,10 @@ export default function Home() {
             <div className="targetPanel">
               <div>
                 <span className="eyebrow">For future creators</span>
-                <h2 id="target-title">まずは、広く試す</h2>
+                <h2 id="target-title">迷いを、制作に変える</h2>
                 <p>
-                  気になるものが複数あるなら、
-                  Webでまとめて試せます。
+                  デザイン、コード、企画。
+                  まだ選びきれない興味を、作品づくりの入口にします。
                 </p>
               </div>
               <ul className="targetList">
