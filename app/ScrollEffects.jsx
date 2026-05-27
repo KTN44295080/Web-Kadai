@@ -5,8 +5,41 @@ import { useEffect } from "react";
 export default function ScrollEffects() {
   useEffect(() => {
     const root = document.documentElement;
+    document.body.classList.add("motionReady");
+
     const parallaxItems = Array.from(document.querySelectorAll("[data-parallax]"));
-    const revealItems = Array.from(document.querySelectorAll(".section, .learningCard, .sceneCard, .course, .workRow, .teacher, .voiceCard, .alumniCard"));
+    const revealItems = Array.from(
+      new Set(
+        document.querySelectorAll(
+          [
+            ".hero .eyebrow",
+            ".hero h1",
+            ".heroCopy",
+            ".heroActions",
+            ".heroFacts",
+            ".kineticRail",
+            ".heroVisual",
+            ".section",
+            ".sectionHead",
+            ".targetPanel",
+            ".learningCard",
+            ".sceneCard",
+            ".roadmapItem",
+            ".course",
+            ".featuredWork",
+            ".workRow",
+            ".exhibitionStrip",
+            ".teacherMessage",
+            ".teacher",
+            ".voiceCard",
+            ".employmentCard",
+            ".companyPanel",
+            ".alumniCard",
+            ".cta",
+          ].join(", "),
+        ),
+      ),
+    );
     let ticking = false;
 
     const update = () => {
@@ -36,14 +69,19 @@ export default function ScrollEffects() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("isVisible");
+            entry.target.classList.remove("isLeaving");
+          } else if (entry.target.classList.contains("isVisible")) {
+            entry.target.classList.remove("isVisible");
+            entry.target.classList.add("isLeaving");
           }
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.1 },
+      { rootMargin: "-6% 0px -10% 0px", threshold: 0.12 },
     );
 
-    revealItems.forEach((item) => {
+    revealItems.forEach((item, index) => {
       item.classList.add("revealItem");
+      item.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 45}ms`);
       observer.observe(item);
     });
 
@@ -55,6 +93,7 @@ export default function ScrollEffects() {
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
       observer.disconnect();
+      document.body.classList.remove("motionReady");
     };
   }, []);
 

@@ -13,6 +13,8 @@
   --radius: 8px;
   --max: 1180px;
   --scroll-progress: 0;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
 }
 
 * {
@@ -64,6 +66,7 @@ a {
   background: var(--lime);
   transform: scaleX(var(--scroll-progress));
   transform-origin: left center;
+  transition: transform 120ms linear;
 }
 
 [data-parallax] {
@@ -73,13 +76,67 @@ a {
 
 .revealItem {
   opacity: 1;
-  transform: translateY(var(--parallax-y, 0px));
-  transition: transform 700ms ease, filter 700ms ease;
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  transition:
+    opacity 520ms var(--ease-out),
+    transform 720ms var(--ease-out),
+    filter 720ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.motionReady .revealItem {
+  opacity: 0;
+  filter: blur(8px) saturate(0.86);
+  transform: translate3d(0, calc(var(--parallax-y, 0px) + 42px), 0) scale(0.985);
 }
 
 .revealItem.isVisible {
-  transform: translateY(var(--parallax-y, 0px));
-  filter: saturate(1.04);
+  opacity: 1;
+  filter: blur(0) saturate(1.04);
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1);
+}
+
+.revealItem.isLeaving {
+  opacity: 0;
+  filter: blur(10px) saturate(0.78);
+  transform: translate3d(0, calc(var(--parallax-y, 0px) - 28px), 0) scale(0.99);
+  transition-duration: 360ms, 420ms, 420ms;
+  transition-timing-function: var(--ease-in);
+  transition-delay: 0ms;
+}
+
+.learningCard,
+.sceneCard,
+.course,
+.workRow,
+.teacher,
+.voiceCard,
+.employmentCard,
+.alumniCard {
+  transform-origin: center bottom;
+}
+
+.learningCard.isVisible,
+.sceneCard.isVisible,
+.course.isVisible,
+.workRow.isVisible,
+.teacher.isVisible,
+.voiceCard.isVisible,
+.employmentCard.isVisible,
+.alumniCard.isVisible {
+  animation: settleIn 620ms var(--ease-out) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes settleIn {
+  0% {
+    box-shadow: none;
+  }
+
+  100% {
+    box-shadow: inherit;
+  }
 }
 
 .siteHeader {
@@ -1537,5 +1594,11 @@ h1 {
   [data-parallax],
   .revealItem {
     transform: none !important;
+  }
+
+  .motionReady .revealItem,
+  .revealItem.isLeaving {
+    opacity: 1 !important;
+    filter: none !important;
   }
 }
