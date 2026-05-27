@@ -37,7 +37,7 @@ export default function WorksShowcase({ works }) {
           </div>
           <h3>{selectedWork.title}</h3>
           <p>{selectedWork.text}</p>
-          <a className="workLink" href={selectedWork.url} target="_blank" rel="noreferrer">
+          <a className="workLink" href={selectedWork.url}>
             公式作品ページを開く
           </a>
         </div>

@@ -75,16 +75,19 @@ const campusScenes = [
     image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/DSC04555.jpg",
     title: "講義で考える",
     text: "企画やUIの意図を言語化し、講師や仲間からフィードバックを受ける。",
+    url: "https://www.dhw.ac.jp/opencampus/",
   },
   {
     image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/DSC04287.jpg",
     title: "制作しながら学ぶ",
     text: "PCを開き、デザインと実装を行き来しながら手を動かして身につける。",
+    url: "https://www.dhw.ac.jp/faculty/web/",
   },
   {
     image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/DSC00595.jpg",
     title: "発表して磨く",
     text: "完成物だけでなく、狙い、改善点、ユーザーへの届け方まで発表する。",
+    url: "https://www.dhw.ac.jp/opencampus/",
   },
 ];
 
@@ -147,18 +150,21 @@ const studentVoices = [
     label: "Webサイトスタイリング演習",
     text: "CSSの基礎だけでなく、デザインカンプを実装へつなげる再現力やプロジェクトの進め方を学んだ授業として紹介。",
     source: "公式学部ページ掲載",
+    url: "https://www.dhw.ac.jp/faculty/web/",
   },
   {
     name: "NOW / 受験生のリアル",
     label: "入試前の本音",
     text: "秋トラ合格者が入試前の迷いや準備を語る記事を導線化し、高校生が自分ごと化できる入口にする。",
     source: "在学生のいま",
+    url: "https://www.dhw.ac.jp/entrance/",
   },
   {
     name: "NOW / 初心者からのスタート",
     label: "未経験からの成長",
     text: "未経験でも挑戦できることを伝える在学生記事を配置し、入学前の不安を下げる役割を持たせる。",
     source: "在学生のいま",
+    url: "https://www.dhw.ac.jp/life/support/",
   },
 ];
 
@@ -168,24 +174,28 @@ const teachers = [
     name: "杉本 展将 教授",
     title: "テクノロジーで価値を創造するITアーキテクト",
     text: "サービスの構造、データ、仕組みを理解し、Webを支える技術視点を学ぶ。",
+    url: "https://www.dhw.ac.jp/faculty/teacher/sugimoto/",
   },
   {
     label: "Design",
     name: "栗谷 幸助 教授",
     title: "Webデザイン業界への夢先案内人",
     text: "画面設計、ビジュアル表現、制作現場で必要な判断力を学ぶ。",
+    url: "https://www.dhw.ac.jp/faculty/teacher/kuriya/",
   },
   {
     label: "Media",
     name: "占部 雅一 特任教授",
     title: "雑誌からWeb、モバイルへと遷移するメディアプロデューサー",
     text: "メディアやSNSの変化を捉え、ユーザーとの接点を考える。",
+    url: "https://www.dhw.ac.jp/faculty/teacher/urabe-masakazu/",
   },
   {
     label: "Development",
     name: "小松 学史 特任准教授",
     title: "デザインから開発まで横断するエンジニア",
     text: "企画、UI、実装を横断し、作品を社会に出す視点を身につける。",
+    url: "https://www.dhw.ac.jp/faculty/teacher/komatsu/",
   },
 ];
 
@@ -205,16 +215,19 @@ const alumniVoices = [
     role: "ZOZO / サービスデザイナー内定",
     text: "DHU在学中の学びをキャリアへつなげた卒業生記事を、進路の具体例として紹介。",
     source: "卒業生の声",
+    url: "https://www.dhw.ac.jp/now/list/alumni/20260427-hirayamakanon/",
   },
   {
     role: "LINEヤフー / UI・UXデザイナー",
     text: "作りたいデザインを追い求めた日々を語る卒業生記事を、Web系進路の実例として配置。",
     source: "卒業生の声",
+    url: "https://www.dhw.ac.jp/now/list/alumni/20260427-takayamayuki/",
   },
   {
     role: "ITエンジニア / 大手企業就職",
     text: "就活の経験から必要なマインドを語る記事を添え、職種の幅を伝える。",
     source: "卒業生の声",
+    url: "https://www.dhw.ac.jp/now/list/alumni/20250427-ueyamayuuki/",
   },
 ];
 
@@ -260,7 +273,7 @@ export default function Home() {
           <a href="#campus">講義風景</a>
           <a href="#works">学生作品</a>
           <a href="#voices">声と進路</a>
-          <a href="#entry">資料請求</a>
+          <a href="https://www.dhw.ac.jp/faculty/web/">公式ページ</a>
         </nav>
       </header>
 
@@ -280,7 +293,7 @@ export default function Home() {
               </p>
               <div className="heroActions">
                 <a className="button" href="#learn">学びを見る</a>
-                <a className="button secondary" href="#works">成果物を見る</a>
+                <a className="button secondary" href="https://www.dhw.ac.jp/faculty/web/">公式サイトへ</a>
               </div>
               <div className="heroFacts" aria-label="学びの特徴">
                 <div className="fact">
@@ -400,13 +413,14 @@ export default function Home() {
             </div>
             <div className="sceneGrid">
               {campusScenes.map((scene) => (
-                <article className="sceneCard" key={scene.title} data-parallax="0.025">
+                <a className="sceneCard" href={scene.url} key={scene.title} data-parallax="0.025">
                   <img src={scene.image} alt={scene.title} />
                   <div>
                     <h3>{scene.title}</h3>
                     <p>{scene.text}</p>
+                    <span className="cardLink">公式ページを見る</span>
                   </div>
-                </article>
+                </a>
               ))}
             </div>
           </div>
@@ -491,7 +505,7 @@ export default function Home() {
               </div>
               <div className="teacherList">
                 {teachers.map((teacher) => (
-                  <article className="teacher" key={teacher.label}>
+                  <a className="teacher" href={teacher.url} key={teacher.label}>
                     <div className="teacherTop">
                       <span className="teacherAvatar">{teacher.name.slice(0, 1)}</span>
                       <small>{teacher.label}</small>
@@ -499,7 +513,8 @@ export default function Home() {
                     <strong>{teacher.name}</strong>
                     <h3>{teacher.title}</h3>
                     <p>{teacher.text}</p>
-                  </article>
+                    <span className="cardLink">教員プロフィールを見る</span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -517,14 +532,14 @@ export default function Home() {
             </div>
             <div className="voiceGrid">
               {studentVoices.map((voice) => (
-                <article className="voiceCard" key={voice.label}>
+                <a className="voiceCard" href={voice.url} key={voice.label}>
                   <small>{voice.label}</small>
                   <p>{voice.text}</p>
                   <div>
                     <strong>{voice.name}</strong>
                     <span>{voice.source}</span>
                   </div>
-                </article>
+                </a>
               ))}
             </div>
           </div>
@@ -556,7 +571,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="alumniList" data-parallax="-0.02">
-                <div className="companyPanel">
+                <a className="companyPanel" href="https://www.dhw.ac.jp/employment/">
                   <h3>内定企業実績の抜粋</h3>
                   {companyGroups.map((group) => (
                     <div className="companyGroup" key={group.label}>
@@ -564,13 +579,14 @@ export default function Home() {
                       <p>{group.names.join(" / ")}</p>
                     </div>
                   ))}
-                </div>
+                  <span className="cardLink darkText">進路・就職ページを見る</span>
+                </a>
                 {alumniVoices.map((voice) => (
-                  <article className="alumniCard" key={voice.role}>
+                  <a className="alumniCard" href={voice.url} key={voice.role}>
                     <small>{voice.role}</small>
                     <p>{voice.text}</p>
                     <span>{voice.source}</span>
-                  </article>
+                  </a>
                 ))}
               </div>
             </div>
@@ -588,9 +604,9 @@ export default function Home() {
                 </p>
               </div>
               <div className="ctaActions">
-                <a className="button" href="https://www.dhw.ac.jp/form/shiryo/" target="_blank" rel="noreferrer">資料請求</a>
-                <a className="button secondary" href="https://www.dhw.ac.jp/oc/" target="_blank" rel="noreferrer">オープンキャンパス</a>
-                <a className="button secondary" href="https://www.dhw.ac.jp/admission/" target="_blank" rel="noreferrer">入試情報</a>
+                <a className="button" href="https://www.dhw.ac.jp/form/shiryo/">資料請求</a>
+                <a className="button secondary" href="https://www.dhw.ac.jp/opencampus/">オープンキャンパス</a>
+                <a className="button secondary" href="https://www.dhw.ac.jp/entrance/">入試情報</a>
               </div>
             </div>
           </div>
@@ -600,7 +616,7 @@ export default function Home() {
       <footer className="siteFooter">
         <div className="siteFooterInner">
           <span>DHU Web Category promotional landing page</span>
-          <span>Source: dhw.ac.jp/faculty/web/</span>
+          <a href="https://www.dhw.ac.jp/faculty/web/">Source: dhw.ac.jp/faculty/web/</a>
         </div>
       </footer>
     </>
