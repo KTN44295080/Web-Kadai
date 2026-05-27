@@ -6,6 +6,7 @@ export default function ScrollEffects() {
   useEffect(() => {
     const root = document.documentElement;
     document.body.classList.add("motionReady");
+    let scrollFrame = 0;
 
     const parallaxItems = Array.from(document.querySelectorAll("[data-parallax]"));
     const revealItems = Array.from(
@@ -101,6 +102,55 @@ export default function ScrollEffects() {
       }
     };
 
+    const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
+
+    const scrollToHash = (hash) => {
+      const target = hash === "#top" ? document.body : document.querySelector(hash);
+
+      if (!target) {
+        return;
+      }
+
+      window.cancelAnimationFrame(scrollFrame);
+
+      const startY = window.scrollY;
+      const headerOffset = hash === "#top" ? 0 : 82;
+      const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
+      const distance = targetY - startY;
+      const duration = Math.min(980, Math.max(520, Math.abs(distance) * 0.52));
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const progress = Math.min(1, (now - startTime) / duration);
+        window.scrollTo(0, startY + distance * easeOutCubic(progress));
+        requestUpdate();
+
+        if (progress < 1) {
+          scrollFrame = window.requestAnimationFrame(step);
+        }
+      };
+
+      scrollFrame = window.requestAnimationFrame(step);
+    };
+
+    const handleAnchorClick = (event) => {
+      const clickedElement = event.target instanceof Element ? event.target : event.target.parentElement;
+      const link = clickedElement?.closest("a[href^='#']");
+      if (!link) {
+        return;
+      }
+
+      const hash = link.getAttribute("href");
+      if (!hash || hash === "#") {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      scrollToHash(hash);
+      window.history.pushState(null, "", hash);
+    };
+
     revealItems.forEach((item, index) => {
       item.classList.add("revealItem");
       item.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 45}ms`);
@@ -108,10 +158,13 @@ export default function ScrollEffects() {
     });
 
     update();
+    document.addEventListener("click", handleAnchorClick, { capture: true });
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
 
     return () => {
+      window.cancelAnimationFrame(scrollFrame);
+      document.removeEventListener("click", handleAnchorClick, { capture: true });
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
       document.body.classList.remove("motionReady");

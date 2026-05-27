@@ -1,4 +1,5 @@
 import "./globals.css";
+import CursorTrail3D from "./CursorTrail3D";
 import ScrollEffects from "./ScrollEffects";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="ja">
       <body>
         <ScrollEffects />
+        <CursorTrail3D />
         {children}
         {isDevelopment && (
           <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>

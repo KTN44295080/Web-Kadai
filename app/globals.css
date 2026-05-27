@@ -69,6 +69,16 @@ a {
   transition: transform 120ms linear;
 }
 
+.cursorTrailCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
 [data-parallax] {
   transform: translate3d(0, var(--parallax-y, 0), 0);
   will-change: transform;
@@ -1654,10 +1664,6 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   [data-parallax] {
     transform: none !important;
   }
