@@ -1,3 +1,5 @@
+@import "lenis/dist/lenis.css";
+
 :root {
   --ink: #101114;
   --muted: #5b6470;
@@ -229,16 +231,11 @@ a {
   letter-spacing: 0;
 }
 
-.brandMark {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  color: var(--ink);
-  background: var(--lime);
-  border-radius: 50%;
-  font-size: 13px;
-  line-height: 1;
+.brandLogo {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -775,8 +772,9 @@ h1 {
 
 .sceneGrid {
   display: grid;
-  grid-template-columns: 1.15fr 0.9fr 0.95fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  align-items: stretch;
 }
 
 .sceneCard {
@@ -789,19 +787,11 @@ h1 {
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
-.sceneCard:first-child {
-  grid-row: span 2;
-}
-
 .sceneCard img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   filter: saturate(1.04) contrast(1.02);
-}
-
-.sceneCard:first-child img {
-  height: 410px;
 }
 
 .sceneCard div {
@@ -1182,20 +1172,37 @@ h1 {
 
 .teacherGrid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 16px;
-  align-items: stretch;
+  grid-template-columns: minmax(340px, 0.62fr) minmax(0, 1.38fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.teacherSection,
+.careerSection {
+  padding-top: clamp(48px, 7vw, 84px);
+  padding-bottom: clamp(48px, 7vw, 84px);
 }
 
 .teacherMessage {
-  padding: 28px;
+  height: fit-content;
+  padding: 24px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
 }
 
 .teacherMessage h2 {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  font-size: clamp(36px, 4.2vw, 58px);
+  line-height: 1.12;
+}
+
+.teacherTitle {
+  text-wrap: nowrap;
+}
+
+.teacherTitle span {
+  display: block;
 }
 
 .teacherMessage p {
@@ -1213,7 +1220,7 @@ h1 {
 .teacher {
   min-height: 164px;
   display: block;
-  padding: 20px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
@@ -1221,12 +1228,25 @@ h1 {
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
+.teacherPhoto {
+  width: 100%;
+  height: 138px;
+  object-fit: cover;
+  object-position: center top;
+  border-bottom: 1px solid var(--line);
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.teacherContent {
+  padding: 16px;
+}
+
 .teacherTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .teacherAvatar {
@@ -1249,21 +1269,21 @@ h1 {
 
 .teacher strong {
   display: block;
-  margin-bottom: 8px;
-  font-size: 18px;
+  margin-bottom: 6px;
+  font-size: 17px;
   line-height: 1.25;
 }
 
 .teacher h3 {
   margin-bottom: 6px;
-  font-size: 22px;
+  font-size: 19px;
   line-height: 1.25;
 }
 
 .teacher p {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -1282,7 +1302,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
@@ -1290,17 +1310,33 @@ h1 {
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
+.voiceImage {
+  width: 100%;
+  height: 112px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+}
+
+.voiceContent {
+  display: flex;
+  min-height: 220px;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+}
+
 .voiceCard small {
   display: block;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   color: var(--magenta);
   font-size: 12px;
   font-weight: 900;
 }
 
 .voiceCard p {
-  margin-bottom: 28px;
-  font-size: 18px;
+  margin-bottom: 18px;
+  font-size: 16px;
   font-weight: 800;
   line-height: 1.6;
 }
@@ -1340,8 +1376,8 @@ h1 {
 
 .careerLayout {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.75fr);
-  gap: clamp(28px, 5vw, 64px);
+  grid-template-columns: minmax(0, 0.92fr) minmax(440px, 0.78fr);
+  gap: clamp(28px, 4vw, 52px);
   align-items: start;
 }
 
@@ -1413,7 +1449,7 @@ h1 {
 
 .companyPanel {
   display: block;
-  padding: 24px;
+  padding: 22px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius);
   background: var(--lime);
@@ -1423,13 +1459,13 @@ h1 {
 }
 
 .companyPanel h3 {
-  margin-bottom: 18px;
-  font-size: 24px;
+  margin-bottom: 14px;
+  font-size: 22px;
   line-height: 1.2;
 }
 
 .companyGroup {
-  padding: 14px 0;
+  padding: 10px 0;
   border-top: 1px solid rgba(16, 17, 20, 0.18);
 }
 
@@ -1448,27 +1484,41 @@ h1 {
 }
 
 .alumniCard {
-  min-height: 160px;
-  display: block;
-  padding: 24px;
+  min-height: 152px;
+  display: grid;
+  grid-template-columns: 156px minmax(0, 1fr);
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius);
   background: #181a20;
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
+.alumniPhoto {
+  width: 100%;
+  height: 100%;
+  min-height: 152px;
+  object-fit: cover;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  filter: saturate(1.08) contrast(1.02);
+}
+
+.alumniContent {
+  padding: 18px;
+}
+
 .alumniCard small {
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   color: var(--lime);
   font-size: 12px;
   font-weight: 900;
 }
 
 .alumniCard p {
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   color: #eef4f5;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -1571,12 +1621,7 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .sceneCard:first-child {
-    grid-row: auto;
-  }
-
-  .sceneCard img,
-  .sceneCard:first-child img {
+  .sceneCard img {
     height: 280px;
   }
 
@@ -1667,6 +1712,17 @@ h1 {
     height: 360px;
   }
 
+  .alumniCard {
+    grid-template-columns: 1fr;
+  }
+
+  .alumniPhoto {
+    height: 150px;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
   .targetPanel {
     padding: 24px;
   }
@@ -1683,8 +1739,7 @@ h1 {
     align-items: flex-start;
   }
 
-  .sceneCard img,
-  .sceneCard:first-child img {
+  .sceneCard img {
     height: 220px;
   }
 

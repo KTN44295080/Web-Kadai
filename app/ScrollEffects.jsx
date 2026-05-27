@@ -1,12 +1,23 @@
 "use client";
 
 import { useEffect } from "react";
+import Lenis from "lenis";
 
 export default function ScrollEffects() {
   useEffect(() => {
     const root = document.documentElement;
     document.body.classList.add("motionReady");
-    let scrollFrame = 0;
+    const scrollEase = (value) => 1 - Math.pow(1 - value, 3);
+    const lenis = new Lenis({
+      duration: 1.05,
+      easing: scrollEase,
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.15,
+      infinite: false,
+      autoRaf: false,
+    });
+    let lenisFrame = 0;
 
     const parallaxItems = Array.from(document.querySelectorAll("[data-parallax]"));
     const revealItems = Array.from(
@@ -102,8 +113,6 @@ export default function ScrollEffects() {
       }
     };
 
-    const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
-
     const scrollToHash = (hash) => {
       const target = hash === "#top" ? document.body : document.querySelector(hash);
 
@@ -111,26 +120,12 @@ export default function ScrollEffects() {
         return;
       }
 
-      window.cancelAnimationFrame(scrollFrame);
-
-      const startY = window.scrollY;
       const headerOffset = hash === "#top" ? 0 : 82;
-      const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
-      const distance = targetY - startY;
-      const duration = Math.min(980, Math.max(520, Math.abs(distance) * 0.52));
-      const startTime = performance.now();
-
-      const step = (now) => {
-        const progress = Math.min(1, (now - startTime) / duration);
-        window.scrollTo(0, startY + distance * easeOutCubic(progress));
-        requestUpdate();
-
-        if (progress < 1) {
-          scrollFrame = window.requestAnimationFrame(step);
-        }
-      };
-
-      scrollFrame = window.requestAnimationFrame(step);
+      lenis.scrollTo(target, {
+        offset: -headerOffset,
+        duration: 1.05,
+        easing: scrollEase,
+      });
     };
 
     const handleAnchorClick = (event) => {
@@ -157,13 +152,23 @@ export default function ScrollEffects() {
       revealStates.set(item, "hidden");
     });
 
+    const runLenis = (time) => {
+      lenis.raf(time);
+      requestUpdate();
+      lenisFrame = window.requestAnimationFrame(runLenis);
+    };
+
     update();
+    lenis.on("scroll", requestUpdate);
+    lenisFrame = window.requestAnimationFrame(runLenis);
     document.addEventListener("click", handleAnchorClick, { capture: true });
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
 
     return () => {
-      window.cancelAnimationFrame(scrollFrame);
+      window.cancelAnimationFrame(lenisFrame);
+      lenis.off("scroll", requestUpdate);
+      lenis.destroy();
       document.removeEventListener("click", handleAnchorClick, { capture: true });
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);

@@ -151,6 +151,7 @@ const studentVoices = [
     text: "CSSの基礎だけでなく、デザインカンプを実装へつなげる再現力やプロジェクトの進め方を学んだ授業として紹介。",
     source: "公式学部ページ掲載",
     url: "https://www.dhw.ac.jp/faculty/web/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/08/main-web.jpg",
   },
   {
     name: "NOW / 受験生のリアル",
@@ -158,6 +159,7 @@ const studentVoices = [
     text: "秋トラ合格者が入試前の迷いや準備を語る記事を導線化し、高校生が自分ごと化できる入口にする。",
     source: "在学生のいま",
     url: "https://www.dhw.ac.jp/entrance/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2026/05/thumb-2027nyushi.png",
   },
   {
     name: "NOW / 初心者からのスタート",
@@ -165,6 +167,7 @@ const studentVoices = [
     text: "未経験でも挑戦できることを伝える在学生記事を配置し、入学前の不安を下げる役割を持たせる。",
     source: "在学生のいま",
     url: "https://www.dhw.ac.jp/life/support/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2026/04/exclusive-lecture-580x387.jpg",
   },
 ];
 
@@ -175,6 +178,7 @@ const teachers = [
     title: "テクノロジーで価値を創造するITアーキテクト",
     text: "サービスの構造、データ、仕組みを理解し、Webを支える技術視点を学ぶ。",
     url: "https://www.dhw.ac.jp/faculty/teacher/sugimoto/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/sugimoto.png",
   },
   {
     label: "Design",
@@ -182,6 +186,7 @@ const teachers = [
     title: "Webデザイン業界への夢先案内人",
     text: "画面設計、ビジュアル表現、制作現場で必要な判断力を学ぶ。",
     url: "https://www.dhw.ac.jp/faculty/teacher/kuriya/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/b3b48cc8e695f04445acd3c20f1e9453.jpg",
   },
   {
     label: "Media",
@@ -189,6 +194,7 @@ const teachers = [
     title: "雑誌からWeb、モバイルへと遷移するメディアプロデューサー",
     text: "メディアやSNSの変化を捉え、ユーザーとの接点を考える。",
     url: "https://www.dhw.ac.jp/faculty/teacher/urabe-masakazu/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/2f0f30feb39e96be7674c7a2ce02f76a.jpg",
   },
   {
     label: "Development",
@@ -196,6 +202,7 @@ const teachers = [
     title: "デザインから開発まで横断するエンジニア",
     text: "企画、UI、実装を横断し、作品を社会に出す視点を身につける。",
     url: "https://www.dhw.ac.jp/faculty/teacher/komatsu/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2023/07/fe4e34eb4b4e67e9c061f72296c9429e.jpg",
   },
 ];
 
@@ -216,18 +223,21 @@ const alumniVoices = [
     text: "DHU在学中の学びをキャリアへつなげた卒業生記事を、進路の具体例として紹介。",
     source: "卒業生の声",
     url: "https://www.dhw.ac.jp/now/list/alumni/20260427-hirayamakanon/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2026/04/hirayama-feature.jpg",
   },
   {
     role: "LINEヤフー / UI・UXデザイナー",
     text: "作りたいデザインを追い求めた日々を語る卒業生記事を、Web系進路の実例として配置。",
     source: "卒業生の声",
     url: "https://www.dhw.ac.jp/now/list/alumni/20260427-takayamayuki/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2026/04/takayama-feature.jpg",
   },
   {
     role: "ITエンジニア / 大手企業就職",
     text: "就活の経験から必要なマインドを語る記事を添え、職種の幅を伝える。",
     source: "卒業生の声",
     url: "https://www.dhw.ac.jp/now/list/alumni/20250427-ueyamayuuki/",
+    image: "https://www.dhw.ac.jp/wp/wp-content/uploads/2026/04/ueyama-feature.jpg",
   },
 ];
 
@@ -264,7 +274,11 @@ export default function Home() {
     <>
       <header className="siteHeader">
         <a className="brand" href="#top" aria-label="DHU Web Renewal Concept">
-          <span className="brandMark">DHU</span>
+          <img
+            className="brandLogo"
+            src="https://www.dhw.ac.jp/wp/wp-content/uploads/2023/08/cropped-touch-icon-180x180-1-180x180.png"
+            alt="Digital Hollywood University"
+          />
           <span>Web Category</span>
         </a>
         <nav className="nav" aria-label="ページ内ナビゲーション">
@@ -492,12 +506,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" aria-labelledby="teacher-title">
+        <section className="section teacherSection" aria-labelledby="teacher-title">
           <div className="sectionInner">
             <div className="teacherGrid">
               <div className="teacherMessage">
                 <span className="eyebrow">Teachers</span>
-                <h2 id="teacher-title">現役プロに学ぶ</h2>
+                <h2 id="teacher-title" className="teacherTitle">
+                  <span>現役プロに</span>
+                  <span>学ぶ</span>
+                </h2>
                 <p>
                   技術、デザイン、メディア、開発を、
                   現場目線で学びます。
@@ -506,14 +523,16 @@ export default function Home() {
               <div className="teacherList">
                 {teachers.map((teacher) => (
                   <a className="teacher" href={teacher.url} key={teacher.label}>
-                    <div className="teacherTop">
-                      <span className="teacherAvatar">{teacher.name.slice(0, 1)}</span>
-                      <small>{teacher.label}</small>
+                    <img className="teacherPhoto" src={teacher.image} alt={`${teacher.name}の写真`} />
+                    <div className="teacherContent">
+                      <div className="teacherTop">
+                        <small>{teacher.label}</small>
+                      </div>
+                      <strong>{teacher.name}</strong>
+                      <h3>{teacher.title}</h3>
+                      <p>{teacher.text}</p>
+                      <span className="cardLink">教員プロフィールを見る</span>
                     </div>
-                    <strong>{teacher.name}</strong>
-                    <h3>{teacher.title}</h3>
-                    <p>{teacher.text}</p>
-                    <span className="cardLink">教員プロフィールを見る</span>
                   </a>
                 ))}
               </div>
@@ -533,11 +552,14 @@ export default function Home() {
             <div className="voiceGrid">
               {studentVoices.map((voice) => (
                 <a className="voiceCard" href={voice.url} key={voice.label}>
-                  <small>{voice.label}</small>
-                  <p>{voice.text}</p>
-                  <div>
-                    <strong>{voice.name}</strong>
-                    <span>{voice.source}</span>
+                  <img className="voiceImage" src={voice.image} alt="" />
+                  <div className="voiceContent">
+                    <small>{voice.label}</small>
+                    <p>{voice.text}</p>
+                    <div>
+                      <strong>{voice.name}</strong>
+                      <span>{voice.source}</span>
+                    </div>
                   </div>
                 </a>
               ))}
@@ -545,7 +567,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section dark" aria-labelledby="career-title">
+        <section className="section dark careerSection" aria-labelledby="career-title">
           <div className="sectionInner">
             <div className="careerLayout">
               <div>
@@ -583,9 +605,12 @@ export default function Home() {
                 </a>
                 {alumniVoices.map((voice) => (
                   <a className="alumniCard" href={voice.url} key={voice.role}>
-                    <small>{voice.role}</small>
-                    <p>{voice.text}</p>
-                    <span>{voice.source}</span>
+                    <img className="alumniPhoto" src={voice.image} alt="" />
+                    <div className="alumniContent">
+                      <small>{voice.role}</small>
+                      <p>{voice.text}</p>
+                      <span>{voice.source}</span>
+                    </div>
                   </a>
                 ))}
               </div>
