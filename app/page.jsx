@@ -577,7 +577,7 @@ export default function Home() {
           <div className="sectionInner">
             <div className="cta">
               <div>
-                <h2 id="entry-title">次は、見に行く</h2>
+                <h2 id="entry-title">実際に見てみる</h2>
                 <p>
                   資料請求、オープンキャンパス、
                   入試情報へ。
