@@ -320,6 +320,21 @@ h1 {
   letter-spacing: 0;
 }
 
+.heroTitle {
+  display: grid;
+  gap: 0;
+  font-size: clamp(50px, 7.2vw, 104px);
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.heroTitle span {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
 .heroCopy {
   max-width: 620px;
   margin-bottom: 30px;
@@ -1553,7 +1568,7 @@ h1 {
     padding-top: 48px;
   }
 
-  h1 {
+  .heroTitle {
     font-size: 50px;
   }
 

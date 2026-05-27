@@ -269,7 +269,11 @@ export default function Home() {
           <div className="heroInner">
             <div>
               <span className="eyebrow">DHU Web category</span>
-              <h1 id="hero-title">Webで、<br />体験を設計する</h1>
+              <h1 id="hero-title" className="heroTitle">
+                <span>Webで、</span>
+                <span>体験を</span>
+                <span>設計する</span>
+              </h1>
               <p className="heroCopy">
                 デザインも、コードも、企画も気になる。そんな高校生へ。
                 Webカテゴリーでは、アイデアを画面にし、サービスとして人に届ける力を実践的に学びます。
